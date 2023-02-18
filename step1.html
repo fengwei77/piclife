@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script defer src="https://unpkg.com/alpinejs@3.10.5/dist/cdn.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+<div id="answer"></div>
+<div x-data="{ open: false }">
+    <button @click="open = true">我是按鈕</button>
+
+    <ul
+            x-show="open"
+            @click.away="open = false"
+    >
+        內容內容內容
+    </ul>
+</div>
+<div></div>
+<script>
+    var data;
+    var response;
+    var type = "";
+    var ans = [0,0,0,0,0,0,0,0,0,0];
+    var cart_tree = {
+        data: [
+            {
+                "type": "A",
+                "item": "3",
+                "base_line": "3.5",
+                "lt": ["A", "0"],
+                "gt": ["C", "0"],
+            },
+            {
+                "type": "A",
+                "item": "5",
+                "base_line": "1.5",
+                "lt": ["A", "1"],
+                "gt": ["D", "0"]
+            },
+            {
+                "type": "D",
+                "item": "9",
+                "base_line": "4.5",
+                "lt": ["D", "0"],
+                "gt": ["I", "1"]
+            },
+            {
+                "type": "D",
+                "item": "4",
+                "base_line": "2.5",
+                "lt": ["B", "0"],
+                "gt": ["D", "0"]
+            },
+            {
+                "type": "B",
+                "item": "7",
+                "base_line": "2.5",
+                "lt": ["A", "0"],
+                "gt": ["G", "1"]
+            },
+            {
+                "type": "A",
+                "item": "2",
+                "base_line": "1.5",
+                "lt": ["A", "1"],
+                "gt": ["B", "1"]
+            }
+            ,
+            {
+                "type": "D",
+                "item": "10",
+                "base_line": "3.5",
+                "lt": ["D", "0"],
+                "gt": ["J", "0"]
+            },
+            {
+                "type": "D",
+                "item": "5",
+                "base_line": "3.5",
+                "lt": ["D", "1"],
+                "gt": ["E", "1"]
+            },
+            {
+                "type": "J",
+                "item": "7",
+                "base_line": "3.5",
+                "lt": ["G", "1"],
+                "gt": ["J", "1"]
+            }
+            ,
+            {
+                "type": "C",
+                "item": "3",
+                "base_line": "4.5",
+                "lt": ["C", "0"],
+                "gt": ["C", "1"]
+            }
+            ,
+            {
+                "type": "C",
+                "item": "8",
+                "base_line": "3.5",
+                "lt": ["C", "0"],
+                "gt": ["H", "1"]
+            }
+            ,
+            {
+                "type": "C",
+                "item": "10",
+                "base_line": "3.5",
+                "lt": ["C", "0"],
+                "gt": ["J", "1"]
+            }
+            ,
+            {
+                "type": "C",
+                "item": "6",
+                "base_line": "3.5",
+                "lt": ["C", "1"],
+                "gt": ["F", "1"]
+            }
+        ]
+    };
+
+    var type = "常見症狀調養";
+    var person
+    axios.get('js/condition.json')
+        .then(function (response) {
+            data = response.data;
+            let jsonData = JSON.parse(JSON.stringify(data));
+            let getCond = jsonData[type];
+            console.log(type + getCond.length);
+            for (let i = 0; i < getCond.length; i++) {
+
+                console.log(
+                    "立春 => ["
+                    + "症狀類別:" + getCond[i]["症狀類別"] + "。"
+                    + "症狀描述:" + getCond[i]["症狀描述"] + "。"
+                    + "衛教內容(" + getCond[i]["衛教內容"] + "):" + getCond[i]["立春"] + "。"
+                );
+
+
+            }
+        });
+
+</script>
+</body>
+</html>

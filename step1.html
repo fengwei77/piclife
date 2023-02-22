@@ -5,25 +5,56 @@
     <title>Title</title>
 </head>
 <body>
-<script defer src="https://unpkg.com/alpinejs@3.10.5/dist/cdn.min.js"></script>
+<script defer src="https://unpkg.com/alpinejs@3.11.1/dist/cdn.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 <div id="answer"></div>
 <div x-data="{ open: false }">
-    <button @click="open = true">我是按鈕</button>
-
-    <ul
-            x-show="open"
-            @click.away="open = false"
-    >
-        內容內容內容
-    </ul>
+    <!--    Radio:-->
+    <!--    <span x-text="JSON.stringify(radio)"></span>-->
+    <!--    <input type="radio" x-model="radio" value="foo">-->
+    <!--    <input type="radio" x-model="radio" value="bar">-->
 </div>
-<div></div>
+<!--<div x-data="{ message: 'Hello, world!' }">-->
+<!--    <p>{{ message }}</p>-->
+<!--</div>-->
+<!--<div x-data="{ options: ['Option 1', 'Option 2', 'Option 3'], selectedOption: null }">-->
+<!--    <form>-->
+<!--        <template x-for="(option, index) in options" :key="index">-->
+<!--            <div>-->
+<!--                <label :for="'option' + index" x-text="option"></label>-->
+<!--                <input type="radio" :id="'option' + index" :value="option" x-model="selectedOption">-->
+<!--            </div>-->
+<!--        </template>-->
+<!--    </form>-->
+<!--    <p>Selected option: <span x-text="selectedOption"></span></p>-->
+<!--</div>-->
+<ul x-data="qData">
+    <div>
+
+        <template x-for="question in questions_axios2" :key="question.id">
+            <!--            <div x-html="question.id + '-' + question.content"></div>-->
+            <div>
+                <span x-text=" question.content" :key="question.id"></span>
+                <template x-for="option in options" :key="option">
+                    <input type="radio" :value="option"
+                           :id="'option' + option"
+                           :name="'option'+question.id"
+                           x-on:click="selectedOption[parseInt(question.id)-1] = option"
+                           x-model="selectedOption[parseInt(question.id)-1] ">
+                </template>
+            </div>
+        </template>
+        <p>Selected option: <span x-text="selectedOption"></span></p>
+        <!--        <template x-for="ans in [1,2,3,4,5]" :key="ans">-->
+        <!--            <input type="radio"  x-model="ans">-->
+        <!--        </template>-->
+        <button @click="send(selectedOption)">送出</button>
+        <p>Selected option: <span x-text="error"></span></p>
+        <p>體質: <span x-text="type"></span></p>
+    </div>
+</ul>
 <script>
     var data;
-    var response;
-    var type = "";
-    var ans = [0,0,0,0,0,0,0,0,0,0];
     var cart_tree = {
         data: [
             {
@@ -124,27 +155,67 @@
             }
         ]
     };
-
-    var type = "常見症狀調養";
-    var person
     axios.get('js/condition.json')
         .then(function (response) {
             data = response.data;
             let jsonData = JSON.parse(JSON.stringify(data));
             let getCond = jsonData[type];
-            console.log(type + getCond.length);
+            // console.log(type + getCond.length);
             for (let i = 0; i < getCond.length; i++) {
 
-                console.log(
-                    "立春 => ["
-                    + "症狀類別:" + getCond[i]["症狀類別"] + "。"
-                    + "症狀描述:" + getCond[i]["症狀描述"] + "。"
-                    + "衛教內容(" + getCond[i]["衛教內容"] + "):" + getCond[i]["立春"] + "。"
-                );
+                // console.log(
+                //     "立春 => ["
+                //     + "症狀類別:" + getCond[i]["症狀類別"] + "。"
+                //     + "症狀描述:" + getCond[i]["症狀描述"] + "。"
+                //     + "衛教內容(" + getCond[i]["衛教內容"] + "):" + getCond[i]["立春"] + "。"
+                // );
 
 
             }
         });
+
+    async function questions_axios() {
+        let response = await axios.get('js/constitution.json')
+            .then(function (response) {
+                return response.data.questions;
+            });
+        return await response
+    }
+
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('qData', () => ({
+            selectedOption: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            options: [1, 2, 3, 4, 5],
+            error: '',
+            type: "常見症狀調養",
+            gen_name(name, id) {
+                console.log(name + "_" + id);
+                return name + "_" + id;
+            },
+            async questions_axios2() {
+                let response = await axios.get('js/constitution.json')
+                    .then(function (response) {
+                        return response.data.questions;
+                    });
+
+                return await response;
+            },
+            send() {
+                console.log(this.selectedOption);
+                for (const value of this.selectedOption) {
+                    console.log(value);
+                    if (value == 0) {
+                        this.error = '有問題尚未回答!';
+                        break;
+                    } else {
+                        this.error = '';
+                    }
+                }
+            }
+
+        }))
+    })
+
 
 </script>
 </body>

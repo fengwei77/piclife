@@ -28,12 +28,13 @@
 <!--    </form>-->
 <!--    <p>Selected option: <span x-text="selectedOption"></span></p>-->
 <!--</div>-->
-<ul x-data="qData">
+<ul x-data="qData" x-init="get_all_type">
     <div>
 
-        <template x-for="question in questions_axios2" :key="question.id">
+        <template x-for="question in questions_axios" :key="question.id">
             <!--            <div x-html="question.id + '-' + question.content"></div>-->
             <div>
+                <span x-text="question.id"></span>
                 <span x-text=" question.content" :key="question.id"></span>
                 <template x-for="option in options" :key="option">
                     <input type="radio" :value="option"
@@ -49,8 +50,10 @@
         <!--            <input type="radio"  x-model="ans">-->
         <!--        </template>-->
         <button @click="send(selectedOption)">送出</button>
-        <p>Selected option: <span x-text="error"></span></p>
-        <p>體質: <span x-text="type"></span></p>
+        <p>體質: <span x-text="person_type"></span></p>
+
+
+        <p>錯誤訊息: <span x-text="error"></span></p>
     </div>
 </ul>
 <script>
@@ -61,65 +64,65 @@
                 "type": "A",
                 "item": "3",
                 "base_line": "3.5",
-                "lt": ["A", "0"],
-                "gt": ["C", "0"],
+                "lt": ["A", "5"],
+                "gt": ["C", "3"],
             },
             {
                 "type": "A",
                 "item": "5",
                 "base_line": "1.5",
-                "lt": ["A", "1"],
-                "gt": ["D", "0"]
+                "lt": ["A", "0"],
+                "gt": ["D", "9"]
             },
             {
                 "type": "D",
                 "item": "9",
                 "base_line": "4.5",
-                "lt": ["D", "0"],
-                "gt": ["I", "1"]
+                "lt": ["D", "4"],
+                "gt": ["I", "0"]
             },
             {
                 "type": "D",
                 "item": "4",
                 "base_line": "2.5",
-                "lt": ["B", "0"],
-                "gt": ["D", "0"]
+                "lt": ["B", "7"],
+                "gt": ["D", "10"]
             },
             {
                 "type": "B",
                 "item": "7",
                 "base_line": "2.5",
-                "lt": ["A", "0"],
-                "gt": ["G", "1"]
+                "lt": ["A", "2"],
+                "gt": ["G", "0"]
             },
             {
                 "type": "A",
                 "item": "2",
                 "base_line": "1.5",
-                "lt": ["A", "1"],
-                "gt": ["B", "1"]
+                "lt": ["A", "0"],
+                "gt": ["B", "0"]
             }
             ,
             {
                 "type": "D",
                 "item": "10",
                 "base_line": "3.5",
-                "lt": ["D", "0"],
-                "gt": ["J", "0"]
+                "lt": ["D", "5"],
+                "gt": ["J", "7"]
             },
             {
                 "type": "D",
                 "item": "5",
                 "base_line": "3.5",
-                "lt": ["D", "1"],
-                "gt": ["E", "1"]
+                "lt": ["D", "0"],
+                "gt": ["E", "0"]
             },
             {
                 "type": "J",
                 "item": "7",
                 "base_line": "3.5",
-                "lt": ["G", "1"],
-                "gt": ["J", "1"]
+                "lt": ["G", "0"],
+                "gt": ["J", "0"]
             }
             ,
             {
@@ -127,31 +130,31 @@
                 "item": "3",
                 "base_line": "4.5",
                 "lt": ["C", "0"],
-                "gt": ["C", "1"]
+                "gt": ["C", "8"]
             }
             ,
             {
                 "type": "C",
                 "item": "8",
                 "base_line": "3.5",
-                "lt": ["C", "0"],
-                "gt": ["H", "1"]
+                "lt": ["C", "10"],
+                "gt": ["H", "0"]
             }
             ,
             {
                 "type": "C",
                 "item": "10",
                 "base_line": "3.5",
-                "lt": ["C", "0"],
-                "gt": ["J", "1"]
+                "lt": ["C", "6"],
+                "gt": ["J", "0"]
             }
             ,
             {
                 "type": "C",
                 "item": "6",
                 "base_line": "3.5",
-                "lt": ["C", "1"],
-                "gt": ["F", "1"]
+                "lt": ["C", "0"],
+                "gt": ["F", "0"]
             }
         ]
     };
@@ -159,40 +162,41 @@
         .then(function (response) {
             data = response.data;
             let jsonData = JSON.parse(JSON.stringify(data));
-            let getCond = jsonData[type];
-            // console.log(type + getCond.length);
-            for (let i = 0; i < getCond.length; i++) {
+            // let getCond = jsonData[persion_type];
+            // console.log(persion_type + getCond.length);
+            // for (let i = 0; i < getCond.length; i++) {
 
-                // console.log(
-                //     "立春 => ["
-                //     + "症狀類別:" + getCond[i]["症狀類別"] + "。"
-                //     + "症狀描述:" + getCond[i]["症狀描述"] + "。"
-                //     + "衛教內容(" + getCond[i]["衛教內容"] + "):" + getCond[i]["立春"] + "。"
-                // );
+            // console.log(
+            //     "立春 => ["
+            //     + "症狀類別:" + getCond[i]["症狀類別"] + "。"
+            //     + "症狀描述:" + getCond[i]["症狀描述"] + "。"
+            //     + "衛教內容(" + getCond[i]["衛教內容"] + "):" + getCond[i]["立春"] + "。"
+            // );
 
-
-            }
+            // }
         });
 
-    async function questions_axios() {
-        let response = await axios.get('js/constitution.json')
-            .then(function (response) {
-                return response.data.questions;
-            });
-        return await response
-    }
+    // async function questions_axios() {
+    //     let response = await axios.get('js/constitution.json')
+    //         .then(function (response) {
+    //             return response.data.questions;
+    //         });
+    //     return await response
+    // }
 
     document.addEventListener('alpine:init', () => {
         Alpine.data('qData', () => ({
+            no: 0,
             selectedOption: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            all_types: null,
             options: [1, 2, 3, 4, 5],
             error: '',
-            type: "常見症狀調養",
+            person_type: "",
             gen_name(name, id) {
                 console.log(name + "_" + id);
                 return name + "_" + id;
             },
-            async questions_axios2() {
+            async questions_axios() {
                 let response = await axios.get('js/constitution.json')
                     .then(function (response) {
                         return response.data.questions;
@@ -200,8 +204,134 @@
 
                 return await response;
             },
+            get_all_type() {
+                axios.get('js/constitution.json')
+                    .then(function (response) {
+                        this.all_types = response.data.types;
+                        // console.log(this.all_types);
+                    })
+            },
             send() {
+                // console.log(all_types);
+                console.log(cart_tree.data);
                 console.log(this.selectedOption);
+                // 判斷結果
+                //     "type": "J",
+                //     "item": "7",
+                //     "base_line": "3.5",
+                //     "lt": ["G", "1"],
+                //     "gt": ["J", "1"]
+                let next_id = 'A';
+                let ques_id = "3";
+                let tier = 0;
+                // tier 0 : item 3
+                let item_pos = parseInt(cart_tree.data[tier].item) - 1;
+                // var resultObject =  search('A', '3', cart_tree.data);
+                // console.log('resultObject:');
+                // console.log(resultObject);
+                // console.log(`item ${ques_id}: ${this.selectedOption[item_pos]}`)
+                // if (ques_id > 0) {
+                //     if (this.selectedOption[item_pos] > resultObject.base_line) {
+                //         next_id = cart_tree.data[tier].gt[0];
+                //         ques_id = cart_tree.data[tier].gt[1];
+                //     } else {
+                //         next_id = cart_tree.data[tier].lt[0];
+                //         ques_id = cart_tree.data[tier].lt[1];
+                //     }
+                // } else {
+                //     console.log(`[0] tier ${tier} 結果是 ${next_id} :　${ques_id}`)
+                // }
+                //tier 1 : item 5 A, 3  C
+                while (tier < 6) {
+                    if (ques_id > 0) {
+                        resultObject = search(next_id, ques_id, cart_tree.data);
+                        item_pos = parseInt(resultObject.item) - 1;
+                        console.log('resultObject:');
+                        console.log(resultObject);
+                        console.log(`item ${ques_id}: ${this.selectedOption[item_pos]}`)
+                        if (this.selectedOption[item_pos] > resultObject.base_line) {
+                            next_id = resultObject.gt[0];
+                            ques_id = resultObject.gt[1];
+                        } else {
+                            next_id = resultObject.lt[0];
+                            ques_id = resultObject.lt[1];
+                        }
+                        console.log(`tier ${tier} 結果是 ${next_id} :　${ques_id}`)
+                        if (ques_id == 0) {
+                            break;
+                        }
+                    }
+                    tier += 1;
+                }
+                if (ques_id == 0) {
+                    let type_arr = search_type(next_id, all_types);
+                    console.log(type_arr);
+                    this.person_type = type_arr.title;
+                    console.log(this.person_type);
+                    console.log(`[0] tier ${tier} 結果是 ${next_id} :　${ques_id}`)
+
+                }
+                //tier 2 : item 9 D, 8 C
+                // tier = 2;
+                // if (ques_id > 0) {
+                //     resultObject = search(next_id, ques_id, cart_tree.data);
+                //     if (this.selectedOption[item_pos] > cart_tree.data[tier].base_line) {
+                //         next_id = cart_tree.data[tier].gt[0];
+                //         ques_id = cart_tree.data[tier].gt[1];
+                //     } else {
+                //         next_id = cart_tree.data[tier].lt[0];
+                //         ques_id = cart_tree.data[tier].lt[1];
+                //     }
+                //     console.log(`tier ${tier} 結果是 ${next_id} :　${ques_id}`)
+                // } else {
+                //     console.log(`[0] tier ${tier} 結果是 ${next_id} :　${ques_id}`)
+                // }
+                // //tier 3 : item 4 D, 10 C
+                // tier = 3;
+                // if (ques_id > 0) {
+                //     resultObject = search(next_id, ques_id, cart_tree.data);
+                //     if (this.selectedOption[item_pos] > cart_tree.data[tier].base_line) {
+                //         next_id = cart_tree.data[tier].gt[0];
+                //         ques_id = cart_tree.data[tier].gt[1];
+                //     } else {
+                //         next_id = cart_tree.data[tier].lt[0];
+                //         ques_id = cart_tree.data[tier].lt[1];
+                //     }
+                //     console.log(`tier ${tier} 結果是 ${next_id} :　${ques_id}`)
+                // } else {
+                //     console.log(`[0] tier ${tier} 結果是 ${next_id} :　${ques_id}`)
+                // }
+                // //tier 4 : item 7 B , 10 D, 6  C
+                // tier = 4;
+                // if (ques_id > 0) {
+                //     resultObject = search(next_id, ques_id, cart_tree.data);
+                //     if (this.selectedOption[item_pos] > cart_tree.data[tier].base_line) {
+                //         next_id = cart_tree.data[tier].gt[0];
+                //         ques_id = cart_tree.data[tier].gt[1];
+                //     } else {
+                //         next_id = cart_tree.data[tier].lt[0];
+                //         ques_id = cart_tree.data[tier].lt[1];
+                //     }
+                //     console.log(`tier ${tier} 結果是 ${next_id} :　${ques_id}`)
+                // } else {
+                //     console.log(`[0] tier ${tier} 結果是 ${next_id} :　${ques_id}`)
+                // }
+                // //tier 5 : item 2 A, 5 D, 7 J
+                // tier = 5;
+                // if (ques_id > 0) {
+                //     resultObject = search(next_id, ques_id, cart_tree.data);
+                //     if (this.selectedOption[item_pos] > cart_tree.data[tier].base_line) {
+                //         next_id = cart_tree.data[tier].gt[0];
+                //         ques_id = cart_tree.data[tier].gt[1];
+                //     } else {
+                //         next_id = cart_tree.data[tier].lt[0];
+                //         ques_id = cart_tree.data[tier].lt[1];
+                //     }
+                //     console.log(`tier ${tier} 結果是 ${next_id} :　${ques_id}`)
+                // } else {
+                //     console.log(`tier ${tier} 結果是 ${next_id} :　${ques_id}`)
+                // }
+
                 for (const value of this.selectedOption) {
                     console.log(value);
                     if (value == 0) {
@@ -216,6 +346,24 @@
         }))
     })
 
+    function search(key1, key2, myArray) {
+        for (var i = 0; i < myArray.length; i++) {
+            // console.log(myArray.length);
+            // console.log(myArray[i].type);
+            // console.log(myArray[i].item);
+            if (myArray[i].type === key1 && myArray[i].item === key2) {
+                return myArray[i];
+            }
+        }
+    }
+
+    function search_type(key1, myArray) {
+        for (var i = 0; i < myArray.length; i++) {
+            if (myArray[i].id === key1) {
+                return myArray[i];
+            }
+        }
+    }
 
 </script>
 </body>

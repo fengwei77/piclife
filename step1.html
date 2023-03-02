@@ -186,7 +186,7 @@
             }
         ]
     };
-
+    let result;
 
     // async function questions_axios() {
     //     let response = await axios.get('js/constitution.json')
@@ -250,30 +250,35 @@
                     .then(function (response) {
                         data = response.data;
                         let jsonData = JSON.parse(JSON.stringify(data));
-                        console.log(data)
+                        // console.log(data)
                         let getCond = jsonData[pt];
                         // console.log(this.person_type + getCond.length);
                         let prev_cate = '';
                         let prev_desc = '';
-                        for (let i = 0; i < getCond.length; i++) {
-                            if(prev_cate != getCond[i]['症狀類別']){
-                                prev_cate = getCond[i]['症狀類別'];
-                                console.log('症狀類別:' + getCond[i]['症狀類別']);
-                            }
-                            if(prev_desc != getCond[i]['症狀描述']){
-                                prev_desc = getCond[i]['症狀描述'];
-                                console.log('症狀描述:' + getCond[i]['症狀描述']);
-                            }
-                            console.log('衛教內容:' + getCond[i]['衛教內容']);
-                            console.log(term + ':' + getCond[i][term]);
-                            // console.log(
-                            //     "立春 => ["
-                            //     + "症狀類別:" + getCond[i]["症狀類別"] + "。"
-                            //     + "症狀描述:" + getCond[i]["症狀描述"] + "。"
-                            //     + "衛教內容(" + getCond[i]["衛教內容"] + "):" + getCond[i]["立春"] + "。"
-                            // );
+                        return getCond;
+                        // console.log('term 節氣:' + term);
+                        // for (let i = 0; i < getCond.length; i++) {
+                        //     if (prev_cate != getCond[i]['症狀類別']) {
+                        //         prev_cate = getCond[i]['症狀類別'];
+                        //         // console.log('症狀類別:' + getCond[i]['症狀類別']);
+                        //     }
+                        //     if (prev_desc != getCond[i]['症狀描述']) {
+                        //         prev_desc = getCond[i]['症狀描述'];
+                        //         // console.log('症狀描述:' + getCond[i]['症狀描述']);
+                        //     }
+                        // console.log('衛教內容:' + getCond[i]['衛教內容']);
+                        // console.log(term + ':' + getCond[i][term]);
+                        // console.log('節氣:' + term);
+                        //
+                        // this.care_body = term;
+                        // console.log(
+                        //     "立春 => ["
+                        //     + "症狀類別:" + getCond[i]["症狀類別"] + "。"
+                        //     + "症狀描述:" + getCond[i]["症狀描述"] + "。"
+                        //     + "衛教內容(" + getCond[i]["衛教內容"] + "):" + getCond[i]["立春"] + "。"
+                        // );
 
-                        }
+                        // }
                     });
 
                 return await response;
@@ -336,7 +341,49 @@
                     console.log(`[0] tier ${tier} 結果是 ${next_id} :　${ques_id}`)
 
                     console.log(this.person_type);
-                    this.get_condition(this.person_type, this.current_solar_term);
+                    (async () => {
+                        result = await this.get_condition(this.person_type, this.current_solar_term);
+                        console.log(result);
+
+                        let prev_cate = '';
+                        let prev_desc = '';
+                        let prev_cont = '';
+
+                        for (let i = 0; i < result.length; i++) {
+                            if (prev_cate != result[i]['症狀類別']) {
+                                prev_cate = result[i]['症狀類別'];
+                                console.log('症狀類別:' + result[i]['症狀類別']);
+                            }
+                            if (prev_desc != result[i]['症狀描述']) {
+                                prev_desc = result[i]['症狀描述'];
+                                console.log('症狀描述:' + result[i]['症狀描述']);
+                            }
+                            if (prev_cont != result[i]['衛教內容']) {
+                                prev_cont = result[i]['衛教內容'];
+                                console.log('衛教內容:' + result[i]['衛教內容']);
+                                if (result[i]['衛教內容'] == '飲食調養') {
+
+                                    if (prev_cont != result[i][this.current_solar_term]) {
+                                        prev_cont = result[i][this.current_solar_term];
+                                        console.log(this.current_solar_term + ':' + result[i][this.current_solar_term]);
+                                        this.care_body = prev_cont;
+                                    }
+                                }
+                                if (result[i]['衛教內容'] == '穴位調養') {
+
+                                    if (prev_cont != result[i][this.current_solar_term]) {
+                                        prev_cont = result[i][this.current_solar_term];
+                                        console.log(this.current_solar_term + ':' + result[i][this.current_solar_term]);
+                                        this.acupuncture_points = prev_cont;
+                                    }
+                                }
+                            }
+                        }
+
+                    })();
+                    // console.log('result => ');
+                    //
+                    // console.log(result[2]);
 
                 }
                 //tier 2 : item 9 D, 8 C

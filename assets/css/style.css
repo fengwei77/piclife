@@ -1,0 +1,778 @@
+@charset "UTF-8";
+/**
+*
+* @authors Your Name (you@example.org)
+* @date    2023-03-10 16:57:22
+* @version $Id$
+*/
+
+/*
+purple #B1658B;
+red #CA2420;
+blue #326295;
+orange #F89829;
+*/
+
+*, *:before, *:after {
+  box-sizing: Border-box;
+}
+
+.lihsi-desktop{
+	display: block !important;
+}
+
+.lihsi-mobile{
+	display: none !important;
+}
+
+.nopadding{
+	padding: 0 !important;
+}
+
+.txt-center{
+	text-align: center;
+}
+
+.txt-primary-color{
+	color: #D71618 !important;
+}
+
+.txt-second-color{
+	color: #0442aa !important;
+}
+
+.txt-warning-color{
+	color: #fa0000 !important;
+}
+
+.txt-primary-bold{
+	font-weight: 600 !important;
+}
+
+.txt-primary-heavy-bold{
+	font-weight: 900 !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+html{
+	position: relative;
+	width: 100%;
+	min-height: 100vh;
+	letter-spacing: 3px;
+	font-family: "微軟正黑體", "微软雅黑","Helvetica Neue", Helvetica, Arial, sans-serif;
+
+	overflow-x: hidden;
+}
+
+body{
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden;
+}
+
+body.base-bg{
+	background: url('../images/base_bg.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+body.advance-bg{
+	background: url('../images/advance_bg.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.illegal-mask{
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #d0e7ea;
+	z-index: 99;
+	justify-content: center;
+	align-items: center;
+
+	font-size: 26px;
+	font-weight: bold;
+}
+
+.illegal-mask.open{
+	display: flex;
+}
+
+.maintain-edge{
+	display: flex;
+	position: relative;
+	width: 100%;
+	min-height: calc(100vh - 70px) !important;
+	margin-bottom: 70px;
+
+	align-items: center;
+}
+
+.logo{
+	position: absolute;
+	width: 11%;
+	max-width: 211px;
+
+	top: 0;
+	left: 5%;
+	z-index: 5;
+}
+
+.logo img{
+	width: 100%;
+}
+
+
+/* have beam theater */
+.beam-theater{
+	position: relative;
+	width: 100%;
+	/*background: rgba(0, 0, 0, .5);*/
+	padding: 60px;
+}
+
+.kv-extra{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+
+	background-image: url(../images/kv_extra_object.png);
+	background-size: 100% auto;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.kv-area{
+	position: relative;
+	/* 原始700px 不符合滿版，降為550px (1920) */
+	width: 550px;
+	margin: 0 auto;
+	/*background: green;*/
+
+	overflow-y: hidden;
+}
+
+.kv-area .signboard{
+	position: relative;
+	width: 100%;
+}
+
+.kv-area .signboard img{
+	width: 100%;
+}
+
+.kv-area .master{
+	position: relative;
+	width: 100%;
+	padding-top: 5%;
+}
+
+.kv-area .master img{
+	display: block;
+	width: 90%;
+	margin: 0 auto;
+}
+
+.kv-area .word{
+	position: relative;
+	width: 100%;
+	padding-bottom: 3%;
+}
+
+.kv-area .word img{
+	display: block;
+	width: 95%;
+	margin: 0 auto;
+}
+
+.kv-area .btn{
+	position: relative;
+	width: 100%;
+}
+
+.kv-area .btn a{
+	display: block;
+	width: 40%;
+	margin: 0 auto;
+}
+
+.kv-area .btn img{
+	width: 100%;
+}
+
+/**** beam start ****/
+
+.beam{
+	position: absolute;
+	width: calc(100% - 60px);
+	height: calc(100% - 60px);
+
+	top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  z-index: -1;
+
+	/*background: red;*/
+}
+
+.beam .main-canvas{
+	position: relative;
+	display: flex;
+	flex-flow: column;
+	width: 100%;
+	height: 100%;
+}
+
+.beam .main-canvas .topblock{
+	display: flex;
+	width: 100%;
+	height: 30px;
+
+	/*background: blue;*/
+}
+
+.beam .main-canvas .middleblock{
+	display: flex;
+	width: 100%;
+	flex-grow: 1;
+
+	justify-content: space-between;
+
+	/*background: green;*/
+}
+
+.beam .main-canvas .bottomblock{
+	display: flex;
+	width: 100%;
+	height: 30px;
+
+	/*background: purple;*/
+}
+
+.beam .main-canvas .topblock .firstzone{
+	width: 26px;
+	background: url("../images/base_beam_top_left.png");
+	background-size: 100% 100%;
+}
+
+.beam .main-canvas .topblock .secondzone{
+	flex-grow: 1;
+	background: dimgrey;
+
+	background: url("../images/base_beam_top_space.png");
+	background-repeat: repeat-x;
+}
+
+.beam .main-canvas .topblock .thirdzone{
+	width: 77px;
+	background: url("../images/base_beam_top_center.png");
+	background-size: 100% 100%;
+}
+
+.beam .main-canvas .topblock .fourthzone{
+	width: 26px;
+	background: url("../images/base_beam_top_right.png");
+	background-size: 100% 100%;
+}
+
+.beam .main-canvas .middleblock .firstzone{
+	display: flex;
+	flex-flow: column;
+	width: 31px;
+	/*background: red;*/
+}
+
+.beam .main-canvas .middleblock .firstzone .cordchild{
+	flex: 1;
+	width: 100%;
+
+	background: url("../images/base_beam_middle_left_space.png");
+	background-size: 100% 100%;
+	background-repeat: repeat-y;
+}
+
+.beam .main-canvas .middleblock .firstzone .umbilicuschild{
+	width: 100%;
+	height: 72px;
+
+	background: url("../images/base_beam_middle_left_center.png");
+	background-size: 100% 100%;
+}
+
+.beam .main-canvas .middleblock .secondzone{
+	display: flex;
+	flex-flow: column;
+	width: 31px;
+	/*background: red;*/
+}
+
+.beam .main-canvas .middleblock .secondzone .cordchild{
+	flex: 1;
+	width: 100%;
+
+	background: url("../images/base_beam_middle_right_space.png");
+	background-size: 100% 100%;
+	background-repeat: repeat-y;
+}
+
+.beam .main-canvas .middleblock .secondzone .umbilicuschild{
+	width: 100%;
+	height: 72px;
+
+	background: url("../images/base_beam_middle_right_center.png");
+	background-size: 100% 100%;
+}
+
+.beam .main-canvas .bottomblock .firstzone{
+	width: 26px;
+	background: url("../images/base_beam_bottom_left.png");
+	background-size: 100% 100%;
+}
+
+.beam .main-canvas .bottomblock .secondzone{
+	flex-grow: 1;
+	background: dimgrey;
+
+	background: url("../images/base_beam_bottom_space.png");
+	background-repeat: repeat-x;
+}
+
+.beam .main-canvas .bottomblock .thirdzone{
+	width: 77px;
+	background: url("../images/base_beam_bottom_center.png");
+	background-size: 100% 100%;
+}
+
+.beam .main-canvas .bottomblock .fourthzone{
+	width: 26px;
+	background: url("../images/base_beam_bottom_right.png");
+	background-size: 100% 100%;
+}
+
+/**** beam end ****/
+
+.cabinet{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+
+	width: 100%;
+	max-width: 1920px;
+}
+
+.cabinet img{
+	display: block;
+	width: 100%;
+}
+
+.checkout{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 40%;
+	z-index: 5;
+}
+
+.checkout .checkstand .top{
+	display: block;
+	width: 100%;
+	height: 40px;
+	border-radius: 0 10px 10px 0;
+	border: 3px solid #8e8576;
+	border-left: 0;
+	background: #baaf9c;
+}
+
+.checkout .checkstand .bottom{
+	width: 98%;
+	padding-top: 28%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+	border-right: 3px solid #8e8576;
+	background: #a1988a;
+}
+
+.checkout .checkstand .protagonist{
+	width: 40%;
+	margin: 0 auto;
+}
+
+.checkout .checkstand .protagonist img{
+	display: block;
+	width: 100%;
+}
+
+.examination{
+	position: relative;
+	width: 42%;
+	z-index: 6;
+	margin: auto 8% 0 auto;
+}
+
+.examination img{
+	display: block;
+	width: 100%;
+}
+
+.examination .question{
+	position: absolute;
+
+	width: 73%;
+
+	top: 8.5%;
+	left: 15.6%;
+}
+
+.examination .item{
+	position: absolute;
+	width: 65%;
+}
+
+.examination .item.item-1{
+	top: 39%;
+	left: 23%;
+}
+
+.examination .item.item-2{
+	top: 48%;
+	left: 23%;
+}
+
+.examination .item.item-3{
+	top: 57%;
+	left: 23%;
+}
+
+.examination .item.item-4{
+	top: 66%;
+	left: 23%;
+}
+
+.examination .item.item-5{
+	top: 75%;
+	left: 23%;
+}
+
+.examination .item .answer{
+	position: relative;
+	width: 100%;
+	padding-left: 10%;
+
+	cursor: pointer;
+}
+
+.examination .item .answer::before{
+	content: "";
+	position: absolute;
+	width: 10%;
+	height: 100%;
+	bottom: 4%;
+	left: 0;
+
+	background: url("../images/answer_uncheck.png");
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+
+.examination .item .answer.chs::before{
+
+	background: url("../images/answer_check.png");
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+
+.examination .item .answer img{
+	width: 100%;
+}
+
+
+footer{
+	position: absolute;
+	display: flex;
+	width: 100%;
+	height: 70px;
+
+	left: 0;
+	bottom: 0;
+
+	justify-content: center;
+	align-items: center;
+
+	background: #546886;
+	color: #FFF;
+}
+
+footer .txt-block{
+	width: 100%;
+	padding: 0 5%;
+
+}
+
+footer .txt-block img{
+	width: 100%;
+	max-width: 1680px;
+}
+
+
+
+/*小於等於1920*/
+@media (max-width: 1920px) {
+
+}
+
+
+/*小於等於1800*/
+@media (max-width: 1800px) {
+
+}
+
+/*小於等於1440*/
+@media (max-width: 1440px) {
+
+	.logo{
+		width: 160px;
+
+		top: 0;
+		left: 6%;
+	}
+
+	.maintain-edge{
+		min-height: calc(100vh - 50px) !important;
+		margin-bottom: 50px;
+	}
+
+	.kv-area{
+		/* 原始700px 不符合滿版，降為550px (1920) */
+		width: calc(550px * (1440/1920));
+	}
+
+	.beam{
+		position: absolute;
+		width: calc(100% - 30px);
+		height: calc(100% - 30px);
+	}
+
+	footer{
+		height: 50px;
+	}
+
+}
+/*小於等於1200*/
+@media (max-width: 1200px) {
+	
+}
+
+/*小於等於1024*/
+@media (max-width: 1024px) {
+
+	
+}
+
+
+@media (max-width: 992px) {
+
+}
+
+/*小於等於768*/
+@media (max-width: 768px) {
+	
+	.lihsi-desktop{
+		display: none !important;
+	}
+
+	.lihsi-mobile{
+		display: block !important;
+	}
+
+	.logo{
+		width: 100px;
+
+		top: 0;
+		left: 8%;
+	}
+
+	.kv-extra{
+		background-image: url(../images/kv_extra_object_mobile.png);
+		background-size: 100% auto;
+		background-position: bottom center;
+		background-repeat: no-repeat;
+	}
+
+	.kv-area{
+		width: 80%;
+	}
+
+	.kv-area .master img{
+		width: 100%;
+	}
+
+	.kv-area .word{
+		padding-bottom: 5%; 
+	}
+
+	.kv-area .word img{
+		width: 80%;
+	}
+
+	.kv-area .btn a{
+		width: 60%;
+	}
+
+	.beam-theater{
+		padding: 100px 30px 50px 30px;
+	}
+
+	.beam{
+		width: calc(100% - 15px);
+		height: calc(100% - 15px);
+	}
+
+	.beam .main-canvas{
+		position: relative;
+		display: flex;
+		flex-flow: column;
+		width: 100%;
+		height: 100%;
+	}
+
+	.beam .main-canvas .topblock{
+		height: calc(30px * 0.5);
+	}
+
+	.beam .main-canvas .middleblock{
+		display: flex;
+		width: 100%;
+		flex-grow: 1;
+
+		justify-content: space-between;
+
+		/*background: green;*/
+	}
+
+	.beam .main-canvas .bottomblock{
+		display: flex;
+		width: 100%;
+		height: calc(30px * 0.5);
+
+		/*background: purple;*/
+	}
+
+	.beam .main-canvas .topblock .firstzone{
+		width: calc(26px * 0.5);
+	}
+
+	.beam .main-canvas .topblock .secondzone{
+
+		background-size: 100% 100%;
+	}
+
+	.beam .main-canvas .topblock .thirdzone{
+		width: calc(77px * 0.5);
+	}
+
+	.beam .main-canvas .topblock .fourthzone{
+		width: calc(26px * 0.5);
+	}
+
+	.beam .main-canvas .middleblock .firstzone{
+		width: calc(31px * 0.5);
+	}
+
+	.beam .main-canvas .middleblock .firstzone .umbilicuschild{
+		height: calc(72px * 0.5);
+	}
+
+	.beam .main-canvas .middleblock .secondzone{
+		width: calc(31px * 0.5);
+	}
+
+	.beam .main-canvas .middleblock .secondzone .umbilicuschild{
+		height: calc(72px * 0.5);
+	}
+
+	.beam .main-canvas .bottomblock .firstzone{
+		width: calc(26px * 0.5);
+	}
+
+	.beam .main-canvas .bottomblock .secondzone{
+
+		background-size: 100% 100%;
+	}
+
+	.beam .main-canvas .bottomblock .thirdzone{
+		width: calc(77px * 0.5);
+	}
+
+	.beam .main-canvas .bottomblock .fourthzone{
+		width: calc(26px * 0.5);
+	}
+
+	.cabinet{
+		left: 0;
+		bottom: 40%;
+		width: 768px;
+		overflow-x: hidden;
+	}
+
+	.checkout{
+		width: 100%;
+	}
+
+	.checkout .checkstand .top{
+		height: 30px;
+		border-radius: 0;
+		border: 2px solid #8e8576;
+		border-left: 0;
+		border-right: 0;
+	}
+
+	.checkout .checkstand .bottom{
+		width: 100%;
+		padding-top: 72%;
+		border-right: 0;
+	}
+
+	.checkout .checkstand .protagonist{
+		width: 40%;
+		margin: 0 auto auto 8%;
+	}
+
+	.checkout .checkstand .protagonist img{
+		display: block;
+		width: 100%;
+	}
+
+	.examination{
+		width: 95%;
+		margin: auto auto 0 2%;
+	}
+}
+
+@media (max-width: 480px) {
+	.beam-theater{
+		padding: 60px 30px 30px 30px;
+	}
+}
+
+/*小於等於414*/
+@media (max-width: 414px) {
+}
+
+/*小於等於350*/
+@media (max-width: 350px) {
+}

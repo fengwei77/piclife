@@ -6,14 +6,17 @@
 </head>
 <body>
 
+
 <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.0/dist/full.css" rel="stylesheet" type="text/css"/>
 <script src="https://cdn.tailwindcss.com"></script>
 <script defer src="https://unpkg.com/alpinejs@3.11.1/dist/cdn.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 <script type="text/javascript" src="js/luneTerm.js"></script>
 <script type="text/javascript" src="js/24term.js"></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
 <div id="answer"></div>
+
 <div x-data="{ open: false }">
     <!--    Radio:-->
     <!--    <span x-text="JSON.stringify(radio)"></span>-->
@@ -34,9 +37,17 @@
 <!--    </form>-->
 <!--    <p>Selected option: <span x-text="selectedOption"></span></p>-->
 <!--</div>-->
+
+
 <div class="flex flex-row">
-    <div class="basis-1/4"></div>
-    <ul x-data="qData" class="basis-1/2content-center text-center		">
+
+    <div class="basis-1/4">
+    </div>
+    <ul x-data="qData" class="basis-1/2content-center text-center">
+        <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_ibxFWH.json"
+                       background="transparent" speed="0.5"
+                       style="width: 200px; height: 200px;" loop autoplay></lottie-player>
+
         <h1 class="text-lg	font-bold	">Game Mechanic Prototype Demo</h1>
         <div>
 
@@ -284,6 +295,8 @@
                 return await response;
             },
             send() {
+                this.care_body = '';
+                this.acupuncture_points = '';
                 this.open = !this.open;
                 // console.log(all_types);
                 // 判斷結果

@@ -127,7 +127,7 @@ body.advance-bg{
 
 	top: 0;
 	left: 5%;
-	z-index: 5;
+	z-index: 10;
 }
 
 .logo img{
@@ -500,6 +500,117 @@ body.advance-bg{
 	width: 100%;
 }
 
+.result{
+	display: block;
+	position: relative;
+	width: 100%;
+	max-width: 1920px;
+	z-index: 6;
+
+	padding: 60px;
+	/*background: red;*/
+
+	margin: 0 auto;
+}
+
+.result .dog-tag{
+	display: inline-block;
+	position: relative;
+	float: left;
+	width: 50%;
+	padding-left: 10%;
+	/*background: blue;*/
+}
+
+.result .dog-tag .cover{
+	position: relative;
+	width: 100%;
+	text-align: center;
+	padding: 0 15%;
+}
+
+.result .dog-tag .cover img{
+	width: 100%;
+	max-width: calc(617px * 0.8);
+}
+
+.result .dog-tag .memo{
+	position: relative;
+	width: 100%;
+	text-align: center;
+}
+
+.result .dog-tag .memo img{
+	width: 100%;
+	max-width: calc(700px * 0.8);
+}
+
+.result .intro{
+	display: inline-block;
+	position: relative;
+	float: left;
+	width: 50%;
+	padding-left: 3%;
+	padding-right: 3%;
+	/*background: yellow;*/
+}
+
+.result .intro .people{
+	display: inline-block;
+	width: 100%;
+	text-align: left;
+
+	padding-bottom: 2%;
+}
+
+.result .intro .people img{
+	width: calc(120px * 0.8);
+}
+
+.result .intro .subject{
+	display: inline-block;
+	width: 100%;
+	text-align: left;
+}
+
+.result .intro .subject img{
+	width: 100%;
+}
+
+.result .intro .detail{
+	display: inline-block;
+	width: 100%;
+	text-align: left;
+
+	padding-bottom: 2%;
+}
+
+.result .intro .detail img{
+	width: 100%;
+}
+
+.result .intro .link{
+	width: 100%;
+}
+
+.result .intro .link .item{
+	display: inline-block;
+	float: left;
+	width: 50%;
+
+	padding: 1% 2%;
+	text-align: left;
+}
+
+.result .intro .link .item a{
+	display: inline-block;
+	width: 100%;
+}
+
+.result .intro .link .item a img{
+	width: 100%;
+}
+
 
 footer{
 	position: absolute;
@@ -761,10 +872,72 @@ footer .txt-block img{
 		width: 95%;
 		margin: auto auto 0 2%;
 	}
+
+	.result{
+		padding: 100px 30px 50px 30px;
+	}
+
+	.result .dog-tag{
+		width: 100%;
+		padding-top: 20px;
+		padding-left: 0%;
+		padding-bottom: 5%;
+	}
+
+	.result .dog-tag .cover{
+		padding: 0 13%;
+	}
+
+	.result .dog-tag .memo{
+		padding: 0 3%;
+	}
+
+	.result .intro{
+		position: relative;
+		width: 100%;
+		padding-top: 7%;
+		padding-left: 3%;
+		padding-right: 3%;
+	}
+
+	.result .intro .people{
+		position: absolute;
+		display: inline-block;
+		width: 14%;
+		top: 0;
+		left: 2%;
+		padding-bottom: 0%;
+	}
+
+	.result .intro .people img{
+		width: 100%;
+	}
+
+	.result .intro .subject{
+		display: inline-block;
+		width: 100%;
+		text-align: left;
+	}
+
+	.result .intro .subject img{
+		width: 100%;
+	}
+
+	.result .intro .detail{
+		padding-bottom: 4%;
+	}
+
+	.result .intro .link .item:nth-child(3){
+      margin-left: 25%;
+	}
 }
 
 @media (max-width: 480px) {
 	.beam-theater{
+		padding: 60px 30px 30px 30px;
+	}
+
+	.result{
 		padding: 60px 30px 30px 30px;
 	}
 }

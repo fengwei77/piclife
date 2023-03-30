@@ -110,6 +110,70 @@ body.advance-bg{
 	display: flex;
 }
 
+.loading{
+	position: fixed;
+	display: flex;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	z-index: 90;
+	background: url('../images/advance_bg.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.loading.close{
+	display: none;
+}
+
+.loading .cover{
+	display: inline-block;
+	width: calc(290px * 0.8);
+}
+
+.loading .cover img{
+	width: 100%;
+}
+
+.loading .txt{
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	padding-top: 3%;
+}
+
+.loading .txt img{
+	width: calc(948px * 0.8);
+	margin: 0 auto;
+}
+
+.loading .btn{
+	display: none;
+	width: 100%;
+	text-align: center;
+	padding-top: 2%;
+	text-align: center
+}
+
+.loading .btn.open{
+	display: inline-block;
+}
+
+.loading .btn a{
+	display: inline-block;
+	cursor: pointer;
+}
+
+
+.loading .btn a img{
+	width: calc(475px * 0.6);
+}
+
 .maintain-edge{
 	display: flex;
 	position: relative;
@@ -120,6 +184,11 @@ body.advance-bg{
 	align-items: center;
 }
 
+.maintain-edge.close{
+	display: none;
+}
+
+
 .logo{
 	position: absolute;
 	width: 11%;
@@ -127,7 +196,7 @@ body.advance-bg{
 
 	top: 0;
 	left: 5%;
-	z-index: 10;
+	z-index: 92;
 }
 
 .logo img{
@@ -149,12 +218,85 @@ body.advance-bg{
 	left: 0;
 	width: 100%;
 	height: 100%;
-
+	/*
 	background-image: url(../images/kv_extra_object.png);
 	background-size: 100% auto;
 	background-position: center center;
 	background-repeat: no-repeat;
+	*/
 }
+
+.kv-extra .object{
+	position: absolute;
+}
+
+.kv-extra .object img{
+	width: 100%;
+}
+
+.kv-extra .object.object-1 {
+	display: inline-block;
+	width: 17%;
+	top: 2.5%;
+	right: -1%;
+}
+
+.kv-extra .object.object-2 {
+	display: inline-block;
+	width: 13.2%;
+	top: 22.8%;
+	left: 9.15%;
+}
+
+.kv-extra .object.object-3 {
+	display: inline-block;
+	width: 15.2%;
+	top: 29.8%;
+	right: 8.3%;
+}
+
+.kv-extra .object.object-4 {
+	display: inline-block;
+	width: 9.1%;
+	bottom: 21.8%;
+	left: -0.9%;
+}
+
+.kv-extra .object.object-5 {
+	display: inline-block;
+	width: 8.8%;
+	bottom: 14%;
+	left: 6.5%;
+}
+
+.kv-extra .object.object-6 {
+	display: inline-block;
+	width: 15.5%;
+	bottom: 30.5%;
+	right: 3.7%;
+}
+
+.kv-extra .object.object-7 {
+	display: inline-block;
+	width: 10.8%;
+	bottom: -0.5%;
+	left: -0.5%;
+}
+
+.kv-extra .object.object-8 {
+	display: inline-block;
+	width: 6.5%;
+	bottom: 1.2%;
+	right: 19.5%;
+}
+
+.kv-extra .object.object-9 {
+	display: inline-block;
+	width: 16.6%;
+	bottom: 6%;
+	right: 4.1%;
+}
+
 
 .kv-area{
 	position: relative;
@@ -557,14 +699,14 @@ body.advance-bg{
 
 .result .intro .people{
 	display: inline-block;
-	width: 100%;
+	width: calc(120px * 0.8);
 	text-align: left;
 
 	padding-bottom: 2%;
 }
 
 .result .intro .people img{
-	width: calc(120px * 0.8);
+	width: 100%;
 }
 
 .result .intro .subject{
@@ -626,6 +768,10 @@ footer{
 
 	background: #546886;
 	color: #FFF;
+}
+
+footer.close{
+	display: none;
 }
 
 footer .txt-block{
@@ -710,6 +856,26 @@ footer .txt-block img{
 		display: block !important;
 	}
 
+	.loading .cover{
+		width: 28%;
+	}
+
+	.loading .txt{
+		padding-top: 25px;
+	}
+
+	.loading .txt img{
+		width: 70%;
+	}
+
+	.loading .btn{
+		padding-top: 25px;
+	}
+
+	.loading .btn a img{
+		width: 50%;
+	}
+
 	.logo{
 		width: 100px;
 
@@ -718,10 +884,69 @@ footer .txt-block img{
 	}
 
 	.kv-extra{
+		/*
 		background-image: url(../images/kv_extra_object_mobile.png);
 		background-size: 100% auto;
 		background-position: bottom center;
 		background-repeat: no-repeat;
+		*/
+	}
+
+	.kv-extra .object.object-1 {
+		width: 24.4%;
+		top: auto;
+		bottom: -2%;
+		right: -5%;
+	}
+
+	.kv-extra .object.object-2 {
+		width: 18.6%;
+		top: auto;
+		bottom: 0.7%;
+		left: 24.8%;
+	}
+
+	.kv-extra .object.object-3 {
+		width: 28%;
+		top: auto;
+		bottom: 41%;
+		right: -17%;
+	}
+
+	.kv-extra .object.object-4 {
+		width: 16%;
+		bottom: 17.5%;
+		left: -7.7%;
+	}
+
+	.kv-extra .object.object-5 {
+		width: 15%;
+		bottom: 14.1%;
+		left: 6.3%;
+	}
+
+	.kv-extra .object.object-6 {
+		width: 32%;
+		top: 13%;
+		right: -10.5%;
+	}
+
+	.kv-extra .object.object-7 {
+		width: 22%;
+		bottom: -0.5%;
+		left: -0.5%;
+	}
+
+	.kv-extra .object.object-8 {
+		width: 11.4%;
+		bottom: 6%;
+		right: 22.4%;
+	}
+
+	.kv-extra .object.object-9 {
+		width: 30%;
+		bottom: 8%;
+		right: -5.5%;
 	}
 
 	.kv-area{

@@ -55,26 +55,17 @@
 
 
     <!--examination.png start-->
-    <div class="examination">
-        <img src="assets/images/examination.png">
-
-        <div class="question"><img src="assets/images/question_1.png"></div>
-        <div class="item item-1">
-            <div class="answer"><img src="assets/images/question_item_1_1.png"></div>
-        </div>
-        <div class="item item-2">
-            <div class="answer"><img src="assets/images/question_item_1_2.png"></div>
-        </div>
-        <div class="item item-3">
-            <div class="answer"><img src="assets/images/question_item_1_3.png"></div>
-        </div>
-        <div class="item item-4">
-            <div class="answer"><img src="assets/images/question_item_1_4.png"></div>
-        </div>
-        <div class="item item-5">
-            <div class="answer"><img src="assets/images/question_item_1_5.png"></div>
-        </div>
-
+    <div x-data="qData" class="examination">
+        <template x-for="question in questions_axios" :key="question.id">
+            <img x-bind:src="'assets/images/'+question.q_img+'.png'" :class="question"/>
+            <template x-for="op in answer_limit">
+                <div class="item" :class="'item-'+op">
+                    <div class="answer">
+                        <img x-bind:src="'assets/images/'+question.a_img+op+'.png'" :class="question"/>
+                    </div>
+                </div>
+            </template>
+        </template>
     </div>
 
     <!--examination.png end-->
@@ -103,7 +94,8 @@
                        x-model="selectedOption[parseInt(question.id)-1] "
                        class="w-4 h-4 mx-1 px-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
             </template>
-            <img x-bind:src="'assets/images/'+question.q_img+'.png'">
+
+
         </div>
     </template>
     <div>
@@ -270,6 +262,7 @@
 
     document.addEventListener('alpine:init', () => {
         Alpine.data('qData', () => ({
+            answer_limit: 5,
             open: false,
             no: 0,
             selectedOption: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],

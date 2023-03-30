@@ -46,61 +46,61 @@
       "id": "1",
       "content": "您覺得活力充沛嗎？",
       "q_img": "question_1",
-      "a_img": "question_item_1_1"
+      "a_img": "question_item_1_"
     },
     {
       "id": "2",
       "content": "您容易喘嗎?(呼吸短促，接不上氣)？",
       "q_img": "question_2",
-      "a_img": "question_item_2_1"
+      "a_img": "question_item_2_"
     },
     {
       "id": "3",
       "content": "您覺得怕冷、衣服穿得比其他人多嗎？",
       "q_img": "question_3",
-      "a_img": "question_item_3_1"
+      "a_img": "question_item_3_"
     },
     {
       "id": "4",
       "content": "您覺得口乾舌燥、總是想喝水嗎？",
       "q_img": "question_4",
-      "a_img": "question_item_4_1"
+      "a_img": "question_item_4_"
     },
     {
       "id": "5",
       "content": "您覺得胸部悶悶的或肚子脹滿嗎？",
       "q_img": "question_5",
-      "a_img": "question_item_5_1"
+      "a_img": "question_item_5_"
     },
     {
       "id": "6",
       "content": "您覺得大便黏膩或解不乾淨的感覺嗎？",
       "q_img": "question_6",
-      "a_img": "question_item_6_1"
+      "a_img": "question_item_6_"
     },
     {
       "id": "7",
       "content": "您的面色較黯沉或容易出現褐色斑點嗎？",
       "q_img": "question_7",
-      "a_img": "question_item_7_1"
+      "a_img": "question_item_7_"
     },
     {
       "id": "8",
       "content": "您容易感到情緒低落，悶悶不樂嗎？",
       "q_img": "question_8",
-      "a_img": "question_item_8_1"
+      "a_img": "question_item_8_"
     },
     {
       "id": "9",
       "content": "您是一個容易過敏（藥物、食物、氣味、花粉、季節交替時、氣候變化等）的人嗎？",
       "q_img": "question_9",
-      "a_img": "question_item_9_1"
+      "a_img": "question_item_9_"
     },
     {
       "id": "10",
       "content": "您覺得自己的臉色蒼白或萎黃嗎？",
       "q_img": "question_10",
-      "a_img": "question_item_10_1"
+      "a_img": "question_item_10_"
     }
   ]
 }

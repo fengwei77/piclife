@@ -26,25 +26,79 @@
 
 		<!-- hover css -->
 		<link href="assets/css/hover.css" rel="stylesheet">
-        
+
+		<!-- media query preload -->
+		<link rel="preload" href="assets/images/base_bg.png" as="image" />
+		<link rel="preload" href="assets/images/advance_bg.png" as="image" />
+		<link rel="preload" href="assets/images/loading_txt_desktop.png" as="image" />
+		<link rel="preload" href="assets/images/loading_txt_mobile.png" as="image" />
+		<link rel="preload" href="assets/images/loading_btn.png" as="image" />
+		<link rel="preload" href="assets/images/logo.png" as="image" />
+		<link rel="preload" href="assets/images/cabinet.png" as="image" />
+		<link rel="preload" href="assets/images/examination.png" as="image" />
+		<link rel="preload" href="assets/images/btn_again.png" as="image" />
+		<link rel="preload" href="assets/images/btn_share.png" as="image" />
+		<link rel="preload" href="assets/images/btn_cookbook.png" as="image" />
+        <link rel="preload" href="assets/images/base_beam_bottom_center.png" as="image" />
+        <link rel="preload" href="assets/images/base_beam_bottom_left.png" as="image" />
+        <link rel="preload" href="assets/images/base_beam_bottom_right.png" as="image" />
+        <link rel="preload" href="assets/images/base_beam_bottom_space.png" as="image" />
+        <link rel="preload" href="assets/images/base_beam_bottom.png" as="image" />
+        <link rel="preload" href="assets/images/base_beam_left_top.png" as="image" />
+        <link rel="preload" href="assets/images/base_beam_middle_left_center.png" as="image" />
+        <link rel="preload" href="assets/images/base_beam_middle_right_center.png" as="image" />
+        <link rel="preload" href="assets/images/base_beam_middle_right_space.png" as="image" />
+        <link rel="preload" href="assets/images/base_beam_top_center.png" as="image" />
+        <link rel="preload" href="assets/images/base_beam_top_left.png" as="image" />
+        <link rel="preload" href="assets/images/base_beam_top_right.png" as="image" />
+        <link rel="preload" href="assets/images/base_beam_top_space.png" as="image" />
+        <link rel="preload" href="assets/images/base_beam_top.png" as="image" />
 	</head>
-	<body class="base-bg">
+	<body class="">
 		<div id="test-width" style="position: fixed; top: 0px; left: 0px; color: rgba(0, 0, 0, 0.3); z-index: 999;"></div>
+
+		<div class="loading">
+			<div class="cover">
+			<!--<img src="assets/images/loading.png">-->
+			<lottie-player src="assets/lottie/loading.json" background="transparent" speed="1" style="width: 100%;" loop autoplay></lottie-player>
+			</div>
+			<div class="txt refrommiddle">
+				<img src="assets/images/loading_txt_desktop.png" class="lihsi-desktop">
+				<img src="assets/images/loading_txt_mobile.png" class="lihsi-mobile">
+			</div>
+			<div class="btn">
+				<a href="javascript:void(0);" class="hvr-grow" onclick="closeLoading();"><img src="assets/images/loading_btn.png"></a>
+			</div>
+		</div>
 
 		<div class="illegal-mask">請將瑩幕調整為適合尺寸</div>
 
-		<div class="maintain-edge">
+		<div class="maintain-edge close">
 
 			<!--logo start-->
 			<div class="logo"><a href="index.html"><img src="assets/images/logo.png"></a></div>
 			<!--logo end-->
 
-			<div class="kv-extra"></div>
+			<!--<div class="kv-extra parallax" data-offset="50"></div>-->
+			<div class="kv-extra">
+				<div class="object object-1 parallax" data-offset="10"><img src="assets/images/kv_extra_object_1.png"></div>
+				<div class="object object-2 parallax" data-offset="50"><img src="assets/images/kv_extra_object_2.png"></div>
+				<div class="object object-3 parallax" data-offset="50"><img src="assets/images/kv_extra_object_3.png"></div>
+				<div class="object object-4 parallax" data-offset="10"><img src="assets/images/kv_extra_object_4.png"></div>
+				<div class="object object-5 parallax" data-offset="30"><img src="assets/images/kv_extra_object_5.png"></div>
+				<div class="object object-6 parallax" data-offset="10"><img src="assets/images/kv_extra_object_6.png"></div>
+				<div class="object object-7 parallax" data-offset="30"><img src="assets/images/kv_extra_object_7.png"></div>
+				<div class="object object-8 parallax" data-offset="50"><img src="assets/images/kv_extra_object_8.png"></div>
+				<div class="object object-9 parallax" data-offset="20"><img src="assets/images/kv_extra_object_9.png"></div>
+			</div>
 
 			<div class="beam-theater">
 				<div class="kv-area">
 					<div class="signboard"><img src="assets/images/signboard.png"></div>
-					<div class="master"><img src="assets/images/master.png"></div>
+					<div class="master">
+						<!--<img src="assets/images/master.png">-->
+						<lottie-player src="assets/lottie/fp-rgi-sir.json" background="transparent" speed="1" style="width: 100%;" loop autoplay></lottie-player>
+					</div>
 					<div class="word"><img src="assets/images/kv_word.png" class="lihsi-desktop"><img src="assets/images/kv_word_mobile.png" class="lihsi-mobile"></div>
 					<div class="btn"><a href="detection.html" class="hvr-grow"><img src="assets/images/kv_btn.png"></a></div>
 				</div>
@@ -88,7 +142,7 @@
 			
 		</div>
 
-		<footer>
+		<footer class="close">
 			<div class="txt-block">
 				<img src="assets/images/footer_txt_desktop.png" class="lihsi-desktop"><img src="assets/images/footer_txt_mobile.png" class="lihsi-mobile">
 			</div>	
@@ -98,11 +152,22 @@
 		<script src="assets/js/jquery-3.6.3.min.js"></script>
 		
 		<script src="assets/js/lihsi.js"></script>
+		<script src="assets/js/parallax.js"></script>
+		<script src="assets/js/scrollreveal.min.js"></script>
+		<script src="assets/js/scrollreveal-by-lihsi.js"></script>
+		<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 		<script type="text/javascript">
 		$(document).ready(function(){
 
 			
 		});
+
+		 $(window).on('load', function () {
+		 	setTimeout(function() {
+		 		$(".loading .btn").addClass("open");
+		    }, 2000);
+		 	
+		 });
 		</script>
 	</body>
 </html>

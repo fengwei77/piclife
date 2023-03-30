@@ -28,7 +28,7 @@ function checkScreenLegal(){
     currentWidth = $(window).width();
     currentHeight = $(window).height();
 
-    console.log(currentWidth+"-"+currentHeight);
+    //console.log(currentWidth+"-"+currentHeight);
 
     if((currentWidth >= 750) && (currentHeight >= currentWidth)){
         $(".illegal-mask").addClass("open");
@@ -39,6 +39,12 @@ function checkScreenLegal(){
     else{
         $(".illegal-mask").removeClass("open");
     }
+}
+
+function closeLoading(){
+    $(".loading").addClass('close');
+    $("body").addClass('base-bg');
+    $(".maintain-edge, footer").removeClass('close');
 }
 
 /*偵測滾軸 start*/

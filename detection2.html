@@ -26,6 +26,7 @@
 
     <!-- hover css -->
     <link href="assets/css/hover.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
 <body class="advance-bg" x-data="qData">
@@ -40,21 +41,29 @@
     <!--logo end-->
 
     <!--cabinet start-->
-    <div class="cabinet"><img src="assets/images/cabinet.png"></div>
+    <div class="cabinet foo"><img src="assets/images/cabinet.png"></div>
     <!--藥櫃 end-->
 
     <!--checkout  start-->
-    <div class="checkout">
+    <div class="checkout refromleft">
         <div class="checkstand">
-            <div class="protagonist"><img src="assets/images/protagonist.png"></div>
+            <div class="protagonist">
+                <!--<img src="assets/images/protagonist.png">-->
+                <lottie-player src="assets/lottie/qa-rgi-sir.json" background="transparent" speed="1"
+                               style="width: 100%;" loop autoplay></lottie-player>
+            </div>
             <div class="top"></div>
             <div class="bottom"></div>
         </div>
     </div>
     <!--藥櫃 end-->
+
+
+    <span x-data="{ activated: false }"
+          x-intersect:enter="activated = true">
     <!--examination.png start-->
-    <template x-for="question in questions_axios" :key="question.id">
-        <div x-show="question.id == current_ques" class="examination">
+    <template x-for="question in questions_axios" :key="question.id" >
+        <div x-show="question.id == current_ques" class="examination refromrightde">
             <img src="assets/images/examination.png">
             <div class="question">
                 <img x-bind:src="'assets/images/'+question.q_img+'.png'"/>
@@ -73,9 +82,8 @@
             </template>
         </div>
     </template>
-
-    <!--examination.png end-->
-
+        <!--examination.png end-->
+</span>
 
 </div>
 
@@ -85,10 +93,39 @@
             src="assets/images/footer_txt_mobile.png" class="lihsi-mobile">
     </div>
 </footer>
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="assets/js/jquery-3.6.3.min.js"></script>
 
 <script src="assets/js/lihsi.js"></script>
+<script src="assets/js/scrollreveal.min.js"></script>
+<script src="assets/js/scrollreveal-by-lihsi.js"></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $(".examination .item .answer").on('click', function () {
+
+            $(".examination .item .answer").each(function (index) {
+                $(this).removeClass('chs');
+            });
+
+            $(this).addClass('chs');
+
+            setTimeout(function () {
+                window.location.href = "process.html";
+            }, 500);
+
+        });
+    });
+</script>
 <!-- question action plugins  -->
+
+<script defer src="https://unpkg.com/alpinejs@3.11.1/dist/cdn.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+<script type="text/javascript" src="js/luneTerm.js"></script>
+<script type="text/javascript" src="js/24term.js"></script>
+<script src="js/game.js"></script>
+
 </body>
 </html>

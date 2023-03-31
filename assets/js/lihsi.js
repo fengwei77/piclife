@@ -42,9 +42,11 @@ function checkScreenLegal(){
 }
 
 function closeLoading(){
+    /*
     $(".loading").addClass('close');
     $("body").addClass('base-bg');
     $(".maintain-edge, footer").removeClass('close');
+    */
 }
 
 /*偵測滾軸 start*/

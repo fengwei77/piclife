@@ -28,7 +28,7 @@
     <link href="assets/css/hover.css" rel="stylesheet">
 
 </head>
-<body class="advance-bg">
+<body class="advance-bg" x-data="qData">
 <div id="test-width" style="position: fixed; top: 0px; left: 0px; color: rgba(0, 0, 0, 0.3); z-index: 999;"></div>
 
 <div class="illegal-mask">請將瑩幕調整為適合尺寸</div>
@@ -52,21 +52,24 @@
         </div>
     </div>
     <!--藥櫃 end-->
-
-
     <!--examination.png start-->
-    <div x-data="qData" class="examination">
-        <template x-for="question in questions_axios" :key="question.id">
-            <img x-bind:src="'assets/images/'+question.q_img+'.png'" :class="question"/>
+    <template x-for="question in questions_axios" :key="question.id">
+        <div x-show="question.id == 1" class="examination">
+            <img src="assets/images/examination.png">
+            <div class="question">
+                <img x-bind:src="'assets/images/'+question.q_img+'.png'"/>
+            </div>
             <template x-for="op in answer_limit">
                 <div class="item" :class="'item-'+op">
-                    <div class="answer">
-                        <img x-bind:src="'assets/images/'+question.a_img+op+'.png'" :class="question"/>
+                    <div class="answer" x-on:click="triggerChs(question.id,op)"
+                         x-data="{ currentId: `item_${question.id}_${op}`}"
+                         x-bind:id="currentId" :class="chs_option[question.id][op]">
+                        <img x-bind:src="'assets/images/'+question.a_img+op+'.png'"/>
                     </div>
                 </div>
             </template>
-        </template>
-    </div>
+        </div>
+    </template>
 
     <!--examination.png end-->
 
@@ -80,68 +83,52 @@
     </div>
 </footer>
 
-<ul x-data="qData">
-    <template x-for="question in questions_axios" :key="question.id">
-        <!--            <div x-html="question.id + '-' + question.content"></div>-->
-        <div class="text-left">
-            <span x-text="question.id"></span>
-            <span x-text=" question.content" :key="question.id"></span>
-            <template x-for="option in options" :key="option">
-                <input type="radio" :value="option"
-                       :id="'option' + option"
-                       :name="'option'+question.id"
-                       x-on:click="selectedOption[parseInt(question.id)-1] = option"
-                       x-model="selectedOption[parseInt(question.id)-1] "
-                       class="w-4 h-4 mx-1 px-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-            </template>
+<template x-for="question in questions_axios" :key="question.id">
+    <!--            <div x-html="question.id + '-' + question.content"></div>-->
+    <div class="text-left">
+        <span x-text="question.id"></span>
+        <span x-text=" question.content" :key="question.id"></span>
+        <template x-for="option in options" :key="option">
+            <input type="radio" :value="option"
+                   :id="'option' + option"
+                   :name="'option'+question.id"
+                   x-on:click="selectedOption[parseInt(question.id)-1] = option"
+                   x-model="selectedOption[parseInt(question.id)-1] "
+                   class="w-4 h-4 mx-1 px-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+        </template>
 
 
-        </div>
-    </template>
-    <div>
-        <p>Selected option: <span x-text="selectedOption"></span></p>
-        <!--        <template x-for="ans in [1,2,3,4,5]" :key="ans">-->
-        <!--            <input type="radio"  x-model="ans">-->
-        <!--        </template>-->
-        <button class="mb-5 mx-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                @click="send(selectedOption)">送出
-        </button>
-        <p>體質: <span x-text="person_type"></span></p>
-
-        <!--        <p>錯誤訊息: <span x-text="error"></span></p>-->
-
-        <p>目前節氣: <span x-text="current_solar_term"></span></p>
-        <div x-show="open"
-             x-transition:enter="transition ease-out duration-300"
-             x-transition:enter-start="opacity-0 scale-90"
-             x-transition:enter-end="opacity-100 scale-100"
-             x-transition:leave="transition ease-in duration-300"
-             x-transition:leave-start="opacity-100 scale-100"
-             x-transition:leave-end="opacity-0 scale-90"
-        >
-            <p>調養: <span x-text="care_body"></span></p>
-            <p>穴位按摩: <span x-text="acupuncture_points"></span></p>
-        </div>
     </div>
-</ul>
+</template>
+<div>
+    <p>Selected option: <span x-text="selectedOption"></span></p>
+    <!--        <template x-for="ans in [1,2,3,4,5]" :key="ans">-->
+    <!--            <input type="radio"  x-model="ans">-->
+    <!--        </template>-->
+    <button class="mb-5 mx-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            @click="send(selectedOption)">送出
+    </button>
+    <p>體質: <span x-text="person_type"></span></p>
+
+    <!--        <p>錯誤訊息: <span x-text="error"></span></p>-->
+
+    <p>目前節氣: <span x-text="current_solar_term"></span></p>
+    <div x-show="open"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 scale-90"
+         x-transition:enter-end="opacity-100 scale-100"
+         x-transition:leave="transition ease-in duration-300"
+         x-transition:leave-start="opacity-100 scale-100"
+         x-transition:leave-end="opacity-0 scale-90"
+    >
+        <p>調養: <span x-text="care_body"></span></p>
+        <p>穴位按摩: <span x-text="acupuncture_points"></span></p>
+    </div>
+</div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="assets/js/jquery-3.6.3.min.js"></script>
 
 <script src="assets/js/lihsi.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-
-        $(".examination .item .answer").on('click', function () {
-
-            $(".examination .item .answer").each(function (index) {
-                $(this).removeClass('chs');
-            });
-
-            $(this).addClass('chs');
-
-        });
-    });
-</script>
 <!-- question action plugins  -->
 <script defer src="https://unpkg.com/alpinejs@3.11.1/dist/cdn.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
@@ -266,6 +253,18 @@
             open: false,
             no: 0,
             selectedOption: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            chs_option: [
+                ['0', '--', '--', '--', '--', '--'],
+                ['1', '', '', '', '', ''],
+                ['2', '', '', '', '', ''],
+                ['3', '', '', '', '', ''],
+                ['4', '', '', '', '', ''],
+                ['5', '', '', '', '', ''],
+                ['6', '', '', '', '', ''],
+                ['7', '', '', '', '', ''],
+                ['8', '', '', '', '', ''],
+                ['9', '', '', '', '', ''],
+                ['10', '', '', '', '', '']],
             all_types: null,
             options: [1, 2, 3, 4, 5],
             error: '',
@@ -278,12 +277,23 @@
                 this.current_solar_term = getjq(today.getFullYear(), (today.getMonth() + 1), today.getDate());
                 console.log(cart_tree.data);
                 console.log(this.selectedOption);
+                console.log(this.chs_option);
 
                 axios.get('js/constitution.json')
                     .then(function (response) {
                         this.all_types = response.data.types;
                         // console.log(this.all_types);
                     });
+            },
+            triggerChs(group, id) {
+                console.log(group);
+                let i = 1;
+                while (i <= 5){
+                    this.chs_option[group][i] = '';
+                    i++;
+                }
+                this.chs_option[group][id] = 'chs';
+                console.log(this.chs_option);
             },
             get_current_solar_term() {
                 var today = new Date();
@@ -432,7 +442,6 @@
             }
         }
     }
-
 </script>
 </body>
 </html>

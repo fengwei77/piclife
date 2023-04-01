@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=1">
     <title>保誠人壽|麻吉養生館</title>
     <meta name="keywords" content="保誠人壽|麻吉養生館"/>
-    <meta name="description" content="保誠人壽|麻吉養生館">
+    <meta name="description" content="麻吉養生堂的體質檢測準爆惹 你也快來測～養生方法百百款，你知道哪一款適合自己嗎？">
     <meta property="og:title" content="保誠人壽|麻吉養生館"/>
     <meta property="og:site_name" content="保誠人壽|麻吉養生館"/>
     <meta property="og:type" content="website"/>
@@ -42,7 +42,8 @@
     <div class="result">
         <div class="dog-tag">
             <div class="cover"><img id="lf_img" src=""></div>
-            <div class="memo"><img id="rt_img" src=""></div>
+            <div class="memo lihsi-desktop"><img id="rt_img" src=""></div>
+            <div class="memo lihsi-mobile"><img id="rt_img_mobile" src=""></div>
         </div>
         <div class="intro">
             <div class="people"><img src="assets/images/people.png"></div>
@@ -50,8 +51,8 @@
                 <img src="assets/images/subject.png" class="lihsi-desktop">
                 <img src="assets/images/subject_mobile.png" class="lihsi-mobile">
             </div>
-            <div class="detail"><img id="detail" src=""></div>
-
+            <div class="detail lihsi-desktop"><img id="detail" src=""></div>
+            <div class="detail lihsi-mobile"><img id="detail_mobile" src=""></div>
             <div class="link">
                 <div class="item"><a href="index.html" class="hvr-grow"><img src="assets/images/btn_again.png"></a>
                 </div>
@@ -124,9 +125,11 @@
         const urlParams = new URLSearchParams(queryString);
         test_type = urlParams.get('type')
         type_index = type_list.indexOf(test_type);
-        $('#lf_img').attr('src', 'assets/images/dog_tag_' + type_index + '.png');
-        $('#rt_img').attr('src', 'assets/images/result_memo_' + type_index + '.png');
-        $('#detail').attr('src', 'assets/images/detail_' + type_index + '.png');
+        $('#lf_img').attr('src', 'assets/images/result/dog_tag_' + test_type + '.png');
+        $('#rt_img').attr('src', 'assets/images/result/result_memo_' + test_type + '_desktop.png');
+        $('#rt_img_mobile').attr('src', 'assets/images/result/result_memo_' + test_type + '.png');
+        $('#detail').attr('src', 'assets/images/result/detail_' + test_type + '_desktop.png');
+        $('#detail_mobile').attr('src', 'assets/images/result/detail_' + test_type + '.png');
         $(".examination .item .answer").on('click', function () {
 
             $(".examination .item .answer").each(function (index) {
@@ -139,13 +142,12 @@
         $('#line_share').click(() => {
             const dateTime = Date.now();
             const timestamp = Math.floor(dateTime / 1000);
-            test_type ='a';
+            test_type = 'a';
             url = 'https://yaheidea.com.tw/tcm-physical/line_' + test_type.toLowerCase() + '.html?t=' + timestamp;
             window.open('https://social-plugins.line.me/lineit/share?url=' + url);
         });
     });
-
-
 </script>
+
 </body>
 </html>

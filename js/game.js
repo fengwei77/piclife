@@ -70,8 +70,8 @@ var cart_tree = {
             "type": "C",
             "item": "3",
             "base_line": "4.5",
-            "lt": ["C", "0"],
-            "gt": ["C", "8"]
+            "lt": ["C", "8"],
+            "gt": ["C", "0"]
         }
         ,
         {
@@ -163,8 +163,10 @@ document.addEventListener('alpine:init', () => {
             this.chs_option[group][id] = 'chs';
             console.log(this.chs_option);
             setTimeout(() => {
-                this.current_ques = parseInt(group) + 1;
-                if (this.current_ques == 11) {
+                if(this.current_ques < 10) {
+                    this.current_ques = parseInt(group) + 1;
+                }
+                if (parseInt(group) + 1 == 11) {
                     this.send();
                 }
             }, 100);
@@ -241,7 +243,7 @@ document.addEventListener('alpine:init', () => {
                 let type_arr = search_type(next_id, all_types);
                 console.log(type_arr);
                 this.person_type = type_arr.id;
-                location.href = 'process.html?type=' + type_arr.id;
+                // location.href = 'process.html?type=' + type_arr.id;
                 console.log(`[0] tier ${tier} 結果是 ${next_id} :　${ques_id}`)
 
                 console.log(this.person_type);
@@ -287,6 +289,7 @@ document.addEventListener('alpine:init', () => {
                 })();
 
 
+                location.href = 'process.html?type=' + type_arr.id;
             }
 
             for (const value of this.selectedOption) {

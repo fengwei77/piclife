@@ -29,7 +29,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
+
 <body class="advance-bg" x-data="qData">
+<div class="loading" style=" z-index: 999;">
+    <div class="cover" >
+        <img src="assets/images/index-loading.png">
+<!--        <lottie-player src="assets/lottie/loading.json" background="transparent" speed="1" style="width: 100%;" loop autoplay></lottie-player>-->
+    </div>
+</div>
 <div id="test-width" style="position: fixed; top: 0px; left: 0px; color: rgba(0, 0, 0, 0.3); z-index: 999;"></div>
 
 <div class="illegal-mask">請將瑩幕調整為適合尺寸</div>
@@ -105,21 +112,12 @@
 <script src="assets/js/scrollreveal-by-lihsi.js"></script>
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <script type="text/javascript">
-    $(document).ready(function () {
-
-        $(".examination .item .answer").on('click', function () {
-
-            $(".examination .item .answer").each(function (index) {
-                $(this).removeClass('chs');
-            });
-
-            $(this).addClass('chs');
-
-            setTimeout(function () {
-                window.location.href = "process.html";
-            }, 500);
-
-        });
+    $(window).on('load', function () {
+        setTimeout(function() {
+            $(".loading").addClass('close');
+            $("body").addClass('base-bg');
+            $(".maintain-edge, footer").removeClass('close');
+        }, 800);
     });
 </script>
 <!-- question action plugins  -->

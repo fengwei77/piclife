@@ -29,7 +29,7 @@
 
 </head>
 <body class="advance-bg">
-<div id="test-width" style="position: fixed; top: 0px; left: 0px; color: rgba(0, 0, 0, 0.3); z-index: 999;"></div>
+<!--<div id="test-width" style="position: fixed; top: 0px; left: 0px; color: rgba(0, 0, 0, 0.3); z-index: 999;"></div>-->
 
 <div class="illegal-mask">請將瑩幕調整為適合尺寸</div>
 
@@ -137,8 +137,10 @@
         });
 
         $('#line_share').click(() => {
+            const dateTime = Date.now();
+            const timestamp = Math.floor(dateTime / 1000);
             test_type ='a';
-            url = 'https://yaheidea.com.tw/tcm-physical/line_' + test_type.toLowerCase() + '.html';
+            url = 'https://yaheidea.com.tw/tcm-physical/line_' + test_type.toLowerCase() + '.html?t=' + timestamp;
             window.open('https://social-plugins.line.me/lineit/share?url=' + url);
         });
     });

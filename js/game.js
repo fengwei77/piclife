@@ -1,4 +1,6 @@
 var data;
+// cart_tree判斷類型1-10 題,每一個型別都有對應題號
+// 每個題號都有基準分數來判斷大於或小於進行下一步
 var cart_tree = {
     data: [
         {
@@ -101,13 +103,6 @@ var cart_tree = {
 };
 let result;
 
-// async function questions_axios() {
-//     let response = await axios.get('js/constitution.json')
-//         .then(function (response) {
-//             return response.data.questions;
-//         });
-//     return await response
-// }
 
 document.addEventListener('alpine:init', () => {
     Alpine.data('qData', () => ({
@@ -117,6 +112,7 @@ document.addEventListener('alpine:init', () => {
         open: false,
         no: 0,
         selectedOption: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        // chs_option 紀錄每一題選擇的選項 把chs 加進去class 來顯示打勾
         chs_option: [
             ['0', '--', '--', '--', '--', '--'],
             ['1', '', '', '', '', ''],
@@ -210,6 +206,7 @@ document.addEventListener('alpine:init', () => {
 
             return await response;
         },
+        // 送出10題答案來判斷結果
         send() {
             this.care_body = '';
             this.acupuncture_points = '';

@@ -32,12 +32,12 @@
 
 <body class="advance-bg" x-data="qData">
 <div class="loading" style=" z-index: 999;">
-    <div class="cover" >
+    <div class="cover">
         <img src="assets/images/index-loading.png">
-<!--        <lottie-player src="assets/lottie/loading.json" background="transparent" speed="1" style="width: 100%;" loop autoplay></lottie-player>-->
+        <!--        <lottie-player src="assets/lottie/loading.json" background="transparent" speed="1" style="width: 100%;" loop autoplay></lottie-player>-->
     </div>
 </div>
-<div id="test-width" style="position: fixed; top: 0px; left: 0px; color: rgba(0, 0, 0, 0.3); z-index: 999;"></div>
+<!--<div id="test-width" style="position: fixed; top: 0px; left: 0px; color: rgba(0, 0, 0, 0.3); z-index: 999;"></div>-->
 
 <div class="illegal-mask">請將瑩幕調整為適合尺寸</div>
 
@@ -68,31 +68,32 @@
 
     <!--examination.png start-->
     <div class="g_box">
-    <template x-for="question in questions_axios" :key="question.id">
-        <div x-show="question.id == current_ques && open" class="examination "
-             x-transition:enter="transition-transform transition-opacity ease-out duration-500"
-             x-transition:enter-start="opacity-0 translate-x-20"
-             x-transition:enter-end="opacity-100"
-             x-transition:leave="transition ease-in duration-300"
-             x-transition:leave-end="opacity-0 transform -translate-x-5">
-            <img src="assets/images/examination.png">
-            <div class="question">
-                <img x-bind:src="'assets/images/'+question.q_img+'.png'"/>
-            </div>
-            <template x-for="option in options" :key="option">
-                <div class="item" :id="'option' + option" :value="option"
-                     :name="'option'+question.id" :class="'item-'+option"
-                     x-on:click="selectedOption[parseInt(question.id)-1] = option"
-                     x-model="selectedOption[parseInt(question.id)-1] ">
-                    <div class="answer" x-on:click="triggerChs(question.id,option)"
-                         x-data="{ currentId: `item_${question.id}_${option}`}"
-                         x-bind:id="currentId" :class="chs_option[question.id][option]">
-                        <img x-bind:src="'assets/images/'+question.a_img+option+'.png'"/>
-                    </div>
+        <template x-for="question in questions_axios" :key="question.id">
+            <div x-show="question.id == current_ques && open" class="examination "
+                 x-transition:enter="transition-transform transition-opacity ease-out duration-500"
+                 x-transition:enter-start="opacity-0 -translate-y-20  "
+                 x-transition:enter-end="opacity-100"
+                 x-transition:leave="transition ease-in duration-500"
+                 x-transition:leave-start="opacity-100 "
+                 x-transition:leave-end="opacity-0  translate-y-5">
+                <img src="assets/images/examination.png">
+                <div class="question">
+                    <img x-bind:src="'assets/images/'+question.q_img+'.png'"/>
                 </div>
-            </template>
-        </div>
-    </template>
+                <template x-for="option in options" :key="option">
+                    <div class="item" :id="'option' + option" :value="option"
+                         :name="'option'+question.id" :class="'item-'+option"
+                         x-on:click="selectedOption[parseInt(question.id)-1] = option"
+                         x-model="selectedOption[parseInt(question.id)-1] ">
+                        <div class="answer" x-on:click="triggerChs(question.id,option)"
+                             x-data="{ currentId: `item_${question.id}_${option}`}"
+                             x-bind:id="currentId" :class="chs_option[question.id][option]">
+                            <img x-bind:src="'assets/images/'+question.a_img+option+'.png'"/>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
     </div>
     <!--examination.png end-->
 </div>
@@ -113,7 +114,7 @@
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <script type="text/javascript">
     $(window).on('load', function () {
-        setTimeout(function() {
+        setTimeout(function () {
             $(".loading").addClass('close');
             $("body").addClass('base-bg');
             $(".maintain-edge, footer").removeClass('close');
@@ -121,20 +122,21 @@
     });
 </script>
 <!-- question action plugins  -->
-
 <script defer src="https://unpkg.com/alpinejs@3.11.1/dist/cdn.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 <script type="text/javascript" src="js/luneTerm.js"></script>
 <script type="text/javascript" src="js/24term.js"></script>
 <script src="js/game.js"></script>
 <style>
-    .g_box{
+    /*調整問題框固定位置*/
+    .g_box {
         position: relative;
         width: 42%;
         z-index: 6;
         margin: auto 8% 43% auto;
     }
-    .examination{
+
+    .examination {
         position: absolute;
         width: 100%;
         z-index: 6;
@@ -145,7 +147,8 @@
             width: 95%;
             margin: auto auto 98% 0%;
         }
-        .examination{
+
+        .examination {
             position: absolute;
             width: 100%;
         }

@@ -564,12 +564,12 @@ body.advance-bg{
 	margin: auto 8% 0 auto;
 }
 
-.examination img{
+.g_box img{
 	display: block;
 	width: 100%;
 }
 
-.examination .question{
+.g_box .question{
 	position: absolute;
 
 	width: 73%;

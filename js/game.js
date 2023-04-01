@@ -113,7 +113,7 @@ document.addEventListener('alpine:init', () => {
     Alpine.data('qData', () => ({
         current_ques: 1,
         answer_limit: 5,
-        fade_show:false,
+        fade_show: false,
         open: false,
         no: 0,
         selectedOption: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -142,11 +142,14 @@ document.addEventListener('alpine:init', () => {
             console.log(cart_tree.data);
             console.log(this.selectedOption);
             console.log(this.chs_option);
+            setTimeout(() => {
+
+                this.open = true;
+            }, 500);
 
             axios.get('js/constitution.json')
                 .then(function (response) {
                     this.all_types = response.data.types;
-                    this.fade_show = true;
                     // console.log(this.all_types);
                 });
         },
@@ -183,7 +186,6 @@ document.addEventListener('alpine:init', () => {
                 .then(function (response) {
                     return response.data.questions;
                 });
-
             return await response;
         },
         get_all_type() {

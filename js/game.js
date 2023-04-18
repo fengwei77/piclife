@@ -64,8 +64,8 @@ var cart_tree = {
             "type": "J",
             "item": "7",
             "base_line": "3.5",
-            "lt": ["G", "0"],
-            "gt": ["J", "0"]
+            "lt": ["J", "0"],
+            "gt": ["G", "0"]
         }
         ,
         {
@@ -103,16 +103,26 @@ var cart_tree = {
 };
 let result;
 
+// async function questions_axios() {
+//     let response = await axios.get('js/constitution.json')
+//         .then(function (response) {
+//             return response.data.questions;
+//         });
+//     return await response
+// }
 
 document.addEventListener('alpine:init', () => {
     Alpine.data('qData', () => ({
         current_ques: 1,
+        q_number: "1/10",
         answer_limit: 5,
         fade_show: false,
         open: false,
         no: 0,
         selectedOption: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         // chs_option 紀錄每一題選擇的選項 把chs 加進去class 來顯示打勾
+        // cart_tree判斷類型1-10 題,每一個型別都有對應題號
+        // 每個題號都有基準分數來判斷大於或小於進行下一步
         chs_option: [
             ['0', '--', '--', '--', '--', '--'],
             ['1', '', '', '', '', ''],
@@ -138,8 +148,8 @@ document.addEventListener('alpine:init', () => {
             console.log(cart_tree.data);
             console.log(this.selectedOption);
             console.log(this.chs_option);
+            console.log(this.q_number);
             setTimeout(() => {
-
                 this.open = true;
             }, 500);
 
@@ -159,14 +169,18 @@ document.addEventListener('alpine:init', () => {
             this.chs_option[group][id] = 'chs';
             console.log(this.chs_option);
             setTimeout(() => {
-                if(this.current_ques < 10) {
+                if (this.current_ques < 10) {
                     this.current_ques = parseInt(group) + 1;
                 }
                 if (parseInt(group) + 1 == 11) {
                     this.send();
                 }
             }, 100);
+            setTimeout(() => {
 
+                this.q_number = `${ this.current_ques}/10`;
+
+            },  400);
             console.log(this.current_ques);
         },
         get_current_solar_term() {

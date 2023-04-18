@@ -649,7 +649,7 @@ body.advance-bg{
 	max-width: 1920px;
 	z-index: 6;
 
-	padding: 60px;
+	padding:  40px 60px 60px 60px;
 	/*background: red;*/
 
 	margin: 0 auto;
@@ -668,7 +668,7 @@ body.advance-bg{
 	position: relative;
 	width: 100%;
 	text-align: center;
-	padding: 0 15%;
+	padding: 0 12%;
 }
 
 .result .dog-tag .cover img{

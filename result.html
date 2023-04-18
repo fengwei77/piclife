@@ -5,13 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=1">
-    <title>保誠人壽|麻吉養生館</title>
-    <meta name="keywords" content="保誠人壽|麻吉養生館"/>
+    <title>保誠人壽 | 麻吉養生館</title>
+    <meta name="keywords" content="保誠人壽 | 麻吉養生館"/>
     <meta name="description" content="麻吉養生堂的體質檢測準爆惹 你也快來測～養生方法百百款，你知道哪一款適合自己嗎？">
-    <meta property="og:title" content="保誠人壽|麻吉養生館"/>
-    <meta property="og:site_name" content="保誠人壽|麻吉養生館"/>
+    <meta property="og:title" content="保誠人壽 | 麻吉養生館"/>
+    <meta property="og:site_name" content="保誠人壽 | 麻吉養生館"/>
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="">
+    <meta property="og:image" content="https://yaheidea.com.tw/tcm-physical/assets/images/500x500line_PIC.jpg">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="" type="image/png">
@@ -40,13 +41,20 @@
     <!--logo end-->
 
     <div class="result">
-        <div class="dog-tag">
-            <div class="cover"><img id="lf_img" src=""></div>
+        <div class="dog-tag refromleft">
+            <div class="cover">
+                <div id="anima"></div>
+            </div>
             <div class="memo lihsi-desktop"><img id="rt_img" src=""></div>
             <div class="memo lihsi-mobile"><img id="rt_img_mobile" src=""></div>
         </div>
-        <div class="intro">
-            <div class="people"><img src="assets/images/people.png"></div>
+        <div class="intro refromrightde">
+            <div class="people">
+                <lottie-player src="assets/lottie/finish-rgi-sir-w120x121.json" background="transparent" speed="1"
+                               style="width: 100%;" loop autoplay>
+                </lottie-player>
+                <!--                <img src="assets/images/people.png">-->
+            </div>
             <div class="subject">
                 <img src="assets/images/subject.png" class="lihsi-desktop">
                 <img src="assets/images/subject_mobile.png" class="lihsi-mobile">
@@ -111,38 +119,45 @@
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="assets/js/jquery-3.6.3.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-player/1.7.1/lottie-player.js"
+        integrity="sha512-eW04sCXCCgNp3OGfpkSulSI9RUno4i2kMonPyFLUWVU17lTz0ern7QeJnp01MS3czm/YVOGSf6J5IqLUy4uq5A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.11.0/lottie.min.js"
+        integrity="sha512-XCthc/WzPfa+oa49Z3TI6MUK/zlqd67KwyRL9/R19z6uMqBNuv8iEnJ8FWHUFAjC6srr8w3FMZA91Tfn60T/9Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="assets/js/lihsi.js"></script>
 <script type="text/javascript">
-
     var test_type = '';
     var type_index = '';
     var type_list = ['---', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+    var lottie_list = ['---', 'pika', 'coldrean', 'fire', 'gaga', 'mushroom', 'chu', 'princess', 'tuna', 'wet', 'corner'];
     $(document).ready(function () {
-
-
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         test_type = urlParams.get('type')
         type_index = type_list.indexOf(test_type);
-        $('#lf_img').attr('src', 'assets/images/result/dog_tag_' + test_type + '.png');
+        var animation = bodymovin.loadAnimation({
+            container: document.getElementById('anima'),
+            path: `assets/lottie/lt_${test_type}.json`,
+            loop: true,
+            autoplay: true,
+        });
+        document.getElementById("anima").style.display = "block";
+        animation.play();
         $('#rt_img').attr('src', 'assets/images/result/result_memo_' + test_type + '_desktop.png');
         $('#rt_img_mobile').attr('src', 'assets/images/result/result_memo_' + test_type + '.png');
         $('#detail').attr('src', 'assets/images/result/detail_' + test_type + '_desktop.png');
         $('#detail_mobile').attr('src', 'assets/images/result/detail_' + test_type + '.png');
         $(".examination .item .answer").on('click', function () {
-
             $(".examination .item .answer").each(function (index) {
                 $(this).removeClass('chs');
             });
 
             $(this).addClass('chs');
         });
-
         $('#line_share').click(() => {
             const dateTime = Date.now();
-            const timestamp = Math.floor(dateTime / 1000);
-            test_type = 'a';
+            const timestamp = Math.floor(dateTime / 1000); 
             url = 'https://yaheidea.com.tw/tcm-physical/line_' + test_type.toLowerCase() + '.html?t=' + timestamp;
             window.open('https://social-plugins.line.me/lineit/share?url=' + url);
         });
